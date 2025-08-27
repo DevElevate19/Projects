@@ -1,6 +1,35 @@
-Use the following command to have sample dataset or you can just start from fresh
+Library – simple CLI
+A small command-line script to manage a tiny “library”: add books, lend them out, and see due dates. Data is saved locally using pickle files.
+
+How to run
+Python 3 required
+
+Run: python3 Library(Completed).py
+
+What it does
+Load Books: add numbered titles to the library
+
+Take Books: pick by index or name; saves taken date and due date
+
+Check Status: shows borrowed entries with dates
+
+Change Days: set loan period
+
+Save & Exit
+
+Files created
+data.pkl (available books and count)
+
+taken_books.pkl (borrowed records with dates)
+
+Notes
+First run: use “Load Books” to seed the list
+
+File format is pickle; don’t edit by hand
 
 
+
+Run following code for sample dataset:
 
 import pickle
 
