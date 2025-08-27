@@ -1,38 +1,83 @@
-Library – simple CLI
-A small command-line script to manage a tiny “library”: add books, lend them out, and see due dates. Data is saved locally using pickle files.
+# 📚 Library – Simple CLI
 
-How to run
-Python 3 required
+A lightweight command-line tool to manage a tiny library:  
+**Add books, lend them out, and track due dates.**  
+All data is stored locally using pickle files for persistence.
 
-Run: python3 Library(Completed).py
+---
 
-What it does
-Load Books: add numbered titles to the library
+## 🚀 Quick Start
 
-Take Books: pick by index or name; saves taken date and due date
+1. **Requires:** Python 3
+2. **Run:**  
+   ```bash
+   python3 Library(Completed).py
+   ```
 
-Check Status: shows borrowed entries with dates
+---
 
-Change Days: set loan period
+## 🛠️ Features
 
-Save & Exit
+- **Load Books:**  
+  Add numbered titles to your library collection.
+- **Take Books:**  
+  Borrow a book by index or name; records taken date and due date.
+- **Check Status:**  
+  View all borrowed books and their loan/due dates.
+- **Change Days:**  
+  Set or modify the loan period for borrowed books.
+- **Save & Exit:**  
+  Persist all changes and close the program.
 
-Files created
-data.pkl (available books and count)
+---
 
-taken_books.pkl (borrowed records with dates)
+## 📁 Files Created
 
-Notes
-First run: use “Load Books” to seed the list
+- `data.pkl` — stores available books and count  
+- `taken_books.pkl` — stores records of borrowed books and dates
 
-File format is pickle; don’t edit by hand
+---
 
+## 📝 Notes
 
+- **First Run:**  
+  Use “Load Books” to add your initial list of titles.
+- **File Format:**  
+  All data is saved as pickle files (`.pkl`).  
+  **Do not edit these files by hand!**
 
-Run following code for sample dataset:
+---
 
+## 🧪 Sample Dataset
+
+Use the code below to seed your library with example books:
+
+```python
 import pickle
 
-update_file=open("data.txt",'wb')
+update_file = open("data.pkl", 'wb')
+pickle.dump([
+    10,
+    "1. The Alchemist",
+    "2. Sapiens: A Brief History of Humankind",
+    "3. The Kite Runner",
+    "4. The Pragmatic Programmer",
+    "5. The Name of the Wind",
+    "6. The Hitchhiker’s Guide to the Galaxy",
+    # ... add more titles as needed
+], update_file)
+update_file.close()
+```
 
-pickle.dump([10,"1.The Alchemist", "2.Sapiens: A Brief History of Humankind", "3.The Kite Runner", "4.The Pragmatic Programmer", "5.The Name of the Wind", "6.The Hitchhiker’s Guide to the Galaxy", "7.The Count of Monte Cristo", "8.Atomic Habits", "9.Norse Mythology", "10.Deep Work"],update_file)
+---
+
+## 💡 Tip
+
+- For best results, always use the CLI to manage your library.
+- Explore each menu option to learn the workflow.
+
+---
+
+## 🏷️ License
+
+This project is for educational purposes.
