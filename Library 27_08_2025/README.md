@@ -68,16 +68,6 @@ pickle.dump([
 ], update_file)
 update_file.close()
 ```
+## ✍️ Author
 
----
-
-## 💡 Tip
-
-- For best results, always use the CLI to manage your library.
-- Explore each menu option to learn the workflow.
-
----
-
-## 🏷️ License
-
-This project is for educational purposes.
+Created by DevElevate19.
