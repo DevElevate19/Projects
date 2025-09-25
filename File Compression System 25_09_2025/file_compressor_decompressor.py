@@ -193,7 +193,7 @@ class compression_decompression():
 
 
             #At last we are left \n at the end so not reading it to not get extra line at end
-            content[-1]=content[-1][0:-1]
+            content[-1]=content[-1][:-1]
 
             #Closing so that no bug would occur
             file.close()
