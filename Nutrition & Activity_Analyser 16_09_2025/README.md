@@ -4,7 +4,7 @@ A Python-based application that helps users track their nutrition intake and cal
 
 ## Overview
 
-This project was developed when my class tests were going on so might have more number of problems than my earlier projects.The application allows users to input their physical information and food consumption to get detailed nutritional analysis.
+This project was developed during class test periods as a practical exercise in API integration and data processing. The application allows users to input their physical information and food consumption to get detailed nutritional analysis.
 
 ## Features
 
@@ -69,4 +69,4 @@ This project was created during academic test periods, which explains the rapid 
 
 ## Author
 
-Created by DevElevate19.
+Created by DevElevate19

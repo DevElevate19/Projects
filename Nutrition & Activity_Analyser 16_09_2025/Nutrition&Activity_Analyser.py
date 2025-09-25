@@ -9,7 +9,7 @@ nutrition_url=f"https://api.api-ninjas.com/v1/nutrition?query={{}}"
 #using my api key right now for practice right now maybe get removed in future
 api_key='8gW7fEhuptixfADOroTg3g==wd1qPc86ZEDtBJAn'
 
-#meta data for accessing data through api
+# meta data for accessing data through api
 head={"X-Api-Key":f'{api_key}'}
 
 class Data:
