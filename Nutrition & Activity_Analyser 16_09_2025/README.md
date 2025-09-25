@@ -69,4 +69,4 @@ This project was created during academic test periods, which explains the rapid 
 
 ## Author
 
-Developed as a learning project during academic coursework, focusing on API integration and data processing with Python.
+Created by DevElevate19.
