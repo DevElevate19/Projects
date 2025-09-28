@@ -1,5 +1,8 @@
 import os
 import subprocess as sp
+#Could be done easily with gzip but condition for project was not to use external modules to make compression and use logic by my own
+
+
 
 #Making a global ASCII list to use it during functions
 ASCII=['\x00','\x01','\x02','\x03','\x04','\x05','\x06','\x07','\x08','\x09']
@@ -42,6 +45,8 @@ def word_counter(path):
 
 
 class compression_decompression():
+
+    #Taking default things for compression/decompression
     def __init__(self,path,form,zip_loc):
         try:
             self.file_compression=path[0]
@@ -113,8 +118,8 @@ class compression_decompression():
 
 
             #Writing the changes made back into file
-            self.file_compression=self.file_compression.replace(f'.{extension[-1]}',f'_compressed.{extension[-1]}')
-            file_write=open(f'{self.file_compression}', 'w')
+            self.result_path=self.file_compression.replace(f'.{extension[-1]}',f'_compressed.{extension[-1]}')
+            file_write=open(f'{self.result_path}', 'w')
 
             file_write.writelines(content)
 
@@ -203,7 +208,7 @@ class compression_decompression():
             
             
             #Writing the changes made back into file
-            self.file_decompression=self.file_decompression.replace(f'.{extension[-1]}',f'_decompressed.{extension[-1]}')
+            self.result_path=self.file_decompression.replace(f'.{extension[-1]}',f'_decompressed.{extension[-1]}')
             file_write=open(f'{self.file_decompression}', 'w')
 
             file_write.writelines(content)
@@ -222,15 +227,17 @@ class compression_decompression():
 
 
             #creating path for compressed back in same location
-            result_path=self.file_compression.replace(f'.{extension[-1]}','_compressed.7z')
+            self.result_path=self.file_compression.replace(f'.{extension[-1]}','_compressed.')
+
+
 
 
             try:
                 #Using subprocess to create compressed file without actually opening it
-                sp.run([r'C:\Program Files\7-Zip\7z.exe','a',result_path,self.file_compression])
+                sp.run([r'C:\Program Files\7-Zip\7z.exe','a',self.result_path,self.file_compression])
             
             except:
-                sp.run([self.zip_loc,'a',result_path,self.file_compression])
+                sp.run([self.zip_loc,'a',self.result_path,self.file_compression])
 
 
         except:
@@ -245,11 +252,21 @@ class compression_decompression():
         
         try:
 
+            #Recognising extension
+            extension=self.file_decompression.split('.')
+
+
+            #creating path for compressed back in same location
+            self.result_path=self.file_decompression.replace(f'.{extension[-1]}','_decompressed\\')
+
+
             try:
-                sp.run([r'C:\Program Files\7-Zip\7z.exe','x',self.file_decompression])
-        
+
+                sp.run([r'C:\Program Files\7-Zip\7z.exe','x',self.file_decompression,f'-o{self.result_path}'])
+
+
             except:
-                sp.run([self.zip_loc,'x',self.file_decompression])
+                sp.run([self.zip_loc,'x',self.file_decompression,self.result_path])
         
         except:
             print("7zip not found")
@@ -259,7 +276,7 @@ class compression_decompression():
 
 
 
-print("Note:  \n- Please enter all inputs as text strings, not integers.  \n- If 7-Zip is not installed in its default location, type 'yes' when asked.  \n- Decompression is supported only for files compressed by this program.\n\n")
+print("Note:  \n- Please enter all inputs as text strings, not integers.  \n- If 7-Zip is not installeperd in its default location, type 'yes' when asked.  \n- Decompression is supported only for files compressed by this program.\n\n")
 
 #taking operation to perform
 operation=input("What operation do you want to perform?  \nType 'Compression' or 'Decompression':\n")
@@ -346,3 +363,14 @@ else:
 
     else:
         print("\nWrite the answer appropriately for 7zip compression and decompression")
+
+print(f'\n\nBefore Compression/Decompression size: {os.path.getsize(path)} bytes')
+
+
+#Tried to find solution to find file size after decompression using 7zip but dint understand quite
+try:
+    print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)}')
+
+#Handling error with telling user that this feature isnt avaible for 1 specific need
+except:
+    print("File size after decompression from 7zip is not avaiable right now")
