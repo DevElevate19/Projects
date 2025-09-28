@@ -209,7 +209,7 @@ class compression_decompression():
             
             #Writing the changes made back into file
             self.result_path=self.file_decompression.replace(f'.{extension[-1]}',f'_decompressed.{extension[-1]}')
-            file_write=open(f'{self.file_decompression}', 'w')
+            file_write=open(f'{self.result_path}', 'w')
 
             file_write.writelines(content)
 
