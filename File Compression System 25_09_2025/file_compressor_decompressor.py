@@ -384,13 +384,14 @@ for i in range(numoffil):
         else:
             print("\nWrite the answer appropriately for 7zip compression and decompression")
 
-    print(f'\n\nBefore Compression/Decompression size: {os.path.getsize(path)} bytes')
+        #Printing file size before operation
+        print(f'\n\nBefore Compression/Decompression size: {os.path.getsize(path)} bytes')
 
 
-    #Tried to find solution to find file size after decompression using 7zip but dint understand quite
-    try:
-        print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)}')
+        #Tried to find solution to find file size after decompression using 7zip but dint understand quite
+        try:
+            print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)}')
 
-    #Handling error with telling user that this feature isnt avaible for 1 specific need
-    except:
-        print("File size after decompression from 7zip is not available right now")
+        #Handling error with telling user that this feature isnt avaible for 1 specific need
+        except:
+            print("File size after decompression from 7zip is not available right now")
