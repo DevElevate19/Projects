@@ -281,6 +281,19 @@ print("Note:  \n- Please enter all inputs as text strings, not integers.  \n- If
 #taking operation to perform
 operation=input("What operation do you want to perform?  \nType 'Compression' or 'Decompression':\n")
 
+bulk=input("\n\nDo you want to compress/decompress multiple files at once? (yes or no):\n")
+
+
+
+#Checking if bulk compression/decompression is selected depending on which we will do compression that many times
+if bulk.lower()=='yes':
+
+    numoffil=int(input("\n\nEnter the number of file you want to commpress/decompress (Integer value):\n"))
+
+else:
+    numoffil=1
+
+
 
 #Checking Winrar_7Zip in system for better compression only if installed
 winrar_zip=input("\n\nDo you want to use 7-Zip for compression/decompression? (yes or no):\n")
@@ -296,81 +309,88 @@ if winrar_zip.lower()=='yes':
 else:
     #taking none if we dont need winrar_zip
     zip_loc=None
-    
+
     #taking input from user to know where the file is formal do to changes of word to ASCII
     form=input("\n\nDo you want to enable Word Optimization?  \n(This is recommended for files with many repeating words and may reduce file size; sometimes it may increase size.)  \nType 'yes' or 'no':\n")
 
-#Taking path of files
-path=input("\n\nEnter path of your file:\n")
 
-
-#Checking either file exists or not so that program could end before running further to catch user's mistake
-if os.path.exists(path)!=True:
-    print("\nSuch file doesn't exist")
-
-
-else:
-
-
-    #Arranning path with operation to pass valid arguement to main class to perform operations
-    if operation.lower()=='compression':
-        ipath=[path,None]
-
-    else:
-        ipath=[None,path]
+#Using for loop for bulk compression/decompression
+for i in range(numoffil):
 
 
 
-    func=compression_decompression(ipath,form,zip_loc)
 
-    print('\n\n')
-
-
-    #Nested else if for appropriate output as per input
-    if winrar_zip.lower()=='yes':
+    #Taking path of files
+    path=input("\n\nEnter path of your file:\n")
 
 
-        if operation.lower()=='compression':
-            func.compression_using7ziporWinrar()
-
-
-        elif operation.lower()=='decompression':
-            func.decompression_using7ziporWinrar()
-
-
-        #Trying error handling without try except because this could do it easily
-        else:
-            print("\nTell appropriately what operation you want to do")
-
-
-
-    elif winrar_zip.lower()=='no':
-
-
-        if operation.lower()=='compression':
-            func.compression()
-
-
-        elif operation.lower()=='decompression':
-            func.decompression()
-
-
-        #Error handling without try-except
-        else:
-            print("\nTell appropirately what operation you want to do")
-
+    #Checking either file exists or not so that program could end before running further to catch user's mistake
+    if os.path.exists(path)!=True:
+        print("\nSuch file doesn't exist")
 
 
     else:
-        print("\nWrite the answer appropriately for 7zip compression and decompression")
-
-print(f'\n\nBefore Compression/Decompression size: {os.path.getsize(path)} bytes')
 
 
-#Tried to find solution to find file size after decompression using 7zip but dint understand quite
-try:
-    print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)}')
+        #Arranning path with operation to pass valid arguement to main class to perform operations
+        if operation.lower()=='compression':
+            ipath=[path,None]
 
-#Handling error with telling user that this feature isnt avaible for 1 specific need
-except:
-    print("File size after decompression from 7zip is not avaiable right now")
+        else:
+            ipath=[None,path]
+
+
+
+        func=compression_decompression(ipath,form,zip_loc)
+
+        print('\n\n')
+
+
+        #Nested else if for appropriate output as per input
+        if winrar_zip.lower()=='yes':
+
+
+            if operation.lower()=='compression':
+                func.compression_using7ziporWinrar()
+
+
+            elif operation.lower()=='decompression':
+                func.decompression_using7ziporWinrar()
+
+
+            #Trying error handling without try except because this could do it easily
+            else:
+                print("\nTell appropriately what operation you want to do")
+
+
+
+        elif winrar_zip.lower()=='no':
+
+
+            if operation.lower()=='compression':
+                func.compression()
+
+
+            elif operation.lower()=='decompression':
+                func.decompression()
+
+
+            #Error handling without try-except
+            else:
+                print("\nTell appropirately what operation you want to do")
+
+
+
+        else:
+            print("\nWrite the answer appropriately for 7zip compression and decompression")
+
+    print(f'\n\nBefore Compression/Decompression size: {os.path.getsize(path)} bytes')
+
+
+    #Tried to find solution to find file size after decompression using 7zip but dint understand quite
+    try:
+        print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)}')
+
+    #Handling error with telling user that this feature isnt avaible for 1 specific need
+    except:
+        print("File size after decompression from 7zip is not available right now")

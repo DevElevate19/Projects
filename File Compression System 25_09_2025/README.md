@@ -12,6 +12,7 @@ This project was started just before midsem examinations and developed during th
 - **Word Optimization**: Replaces the 10 most frequent words with non-printable ASCII characters (`\x00` to `\x09`)
 - **7-Zip Integration**: Optional external compression using 7-Zip or WinRAR
 - **Dual Compression Modes**: Choose between custom algorithm or 7-Zip compression
+- **Bulk Processing**: **[UPDATED]** Support for multiple file compression/decompression in a single operation
 - **Automatic File Extension Recognition**: Maintains original file extensions with compression suffixes
 - **Interactive CLI**: User-friendly prompts for all operations
 - **Error Handling**: Comprehensive exception handling for file operations
@@ -36,10 +37,11 @@ This project was started just before midsem examinations and developed during th
 The application provides an interactive interface that prompts for:
 
 1. **Operation Type**: Choose between 'Compression' or 'Decompression'
-2. **Compression Method**: Option to use 7-Zip for better compression ratios
-3. **File Path**: Input file for compression or compressed file for decompression
-4. **Word Optimization**: Enable for formal documents with repetitive words (custom compression only)
-5. **Custom 7-Zip Path**: If 7-Zip is not in default location
+2. **Bulk Processing**: **[UPDATED]** Option to process multiple files at once
+3. **Compression Method**: Option to use 7-Zip for better compression ratios
+4. **File Path(s)**: Input file(s) for compression or compressed file(s) for decompression
+5. **Word Optimization**: Enable for formal documents with repetitive words (custom compression only)
+6. **Custom 7-Zip Path**: If 7-Zip is not in default location
 
 ### Custom Compression Features
 - Replaces double spaces with `\x1f` character
@@ -63,7 +65,6 @@ The application provides an interactive interface that prompts for:
 - **7-Zip Size Limitation**: Cannot determine decompressed file size from 7-Zip archives programmatically, preventing accurate compression ratio calculations
 - Word optimization may increase file size for small files due to word mapping overhead
 - Program may fail if input files contain compression ASCII characters (`\x00`-`\x09`, `\x1f`)
-- Limited to single file processing
 - Decompression only works for files compressed by this specific program
 
 ## Technical Implementation
@@ -79,19 +80,18 @@ The application provides an interactive interface that prompts for:
 - No external compression modules used (project constraint)
 - Basic CLI interface due to limited argparse experience
 - No pickle module for data serialization (project constraint)
-- Single file processing only
 - **7-Zip size detection not implemented** due to complexity in parsing 7-Zip output
 
 ## Future Improvements
 
 - Implement 7-Zip archive size analysis for compression ratio calculations
-- Add support for multiple file compression
 - Implement proper command-line argument parsing with argparse
 - Use pickle for efficient word mapping serialization
 - Add pre-compression analysis to determine if word optimization is beneficial
 - Improve ASCII character conflict detection and resolution
 - Add progress bars for large file operations
 - Implement compression ratio reporting
+- Add batch file selection with file browser interface
 
 ## Author
 
