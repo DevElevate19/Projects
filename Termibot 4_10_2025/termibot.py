@@ -1,8 +1,8 @@
 from google import genai
 from openai import OpenAI
 
-#gemini_api_key=AIzaSyB1n3DYMAdpH7SHEiKAtgP9J3LJIlE_5Bo
-#openrouter=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
+#gemini_api_key=Ask Developer if u need key
+#openrouter=Ask Developer if u need key
 
 #Dint find feasible because we need to handle 2 models with different kind of errors
 '''#Creating a decorator to handle api key error instead of using the try-except again for each model
