@@ -57,12 +57,12 @@ The application provides an interactive interface that prompts for:
 
 1. **ASCII Code Handling**: The primary challenge was managing ASCII character substitution during word optimization and ensuring proper reversal during decompression
 2. **String Parsing**: Converting word lists to strings and back without using pickle module
-3. **7-Zip Size Detection**: **Major Issue** - Unable to programmatically determine the size of decompressed files from 7-Zip archives, which limits size comparison functionality
+3. **7-Zip Size Detection**: **Major Issue** - Unable to programmatically determine the size of decompressed files from 7-Zip archives, which limits size comparison functionality **[Fixed]**
 4. **Character Conflicts**: Handling cases where input files contain the specific ASCII characters used for compression
 
 ## Known Issues
 
-- **7-Zip Size Limitation**: Cannot determine decompressed file size from 7-Zip archives programmatically, preventing accurate compression ratio calculations
+- **7-Zip Size Limitation**: Cannot determine decompressed file size from 7-Zip archives programmatically, preventing accurate compression ratio calculations **[Fixed]**
 - Word optimization may increase file size for small files due to word mapping overhead
 - Program may fail if input files contain compression ASCII characters (`\x00`-`\x09`, `\x1f`)
 - Decompression only works for files compressed by this specific program
@@ -74,19 +74,19 @@ The application provides an interactive interface that prompts for:
 - **Subprocess Integration**: Uses `subprocess.run()` for 7-Zip operations
 - **File Extension Handling**: Automatic recognition and preservation of file types
 - **Error Handling**: Try-catch blocks for robust operation
+- **Directory size detection**: Uses for loop to access each file in dir to get total size
 
 ## Limitations
 
 - No external compression modules used (project constraint)
 - Basic CLI interface due to limited argparse experience
 - No pickle module for data serialization (project constraint)
-- **7-Zip size detection not implemented** due to complexity in parsing 7-Zip output
+- **7-Zip size detection not implemented** due to complexity in parsing 7-Zip output **[Fixed]**
 
 ## Future Improvements
 
-- Implement 7-Zip archive size analysis for compression ratio calculations
 - Implement proper command-line argument parsing with argparse
-- Use pickle for efficient word mapping serialization
+- Use pickle for efficient word mapping serialization **[For easy use]**
 - Add pre-compression analysis to determine if word optimization is beneficial
 - Improve ASCII character conflict detection and resolution
 - Add progress bars for large file operations
@@ -99,5 +99,5 @@ Created by DevElevate19
 
 ## Notes
 
-- The 7-Zip size detection issue remains unresolved - while compression and decompression work perfectly, getting the exact decompressed size from 7-Zip archives programmatically proved challenging
+- The 7-Zip size detection issue remains unresolved - while compression and decompression work perfectly, getting the exact decompressed size from 7-Zip archives programmatically proved challenging **[Fixed]**
 - Project constraints prevented use of external modules that could have simplified implementation
