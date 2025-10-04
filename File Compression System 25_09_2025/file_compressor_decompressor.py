@@ -390,8 +390,15 @@ for i in range(numoffil):
 
         #Tried to find solution to find file size after decompression using 7zip but dint understand quite
         try:
-            print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)}')
+            print(f'\nAfter Compression/Decompression size: {os.path.getsize(func.result_path)} bytes')
 
-        #Handling error with telling user that this feature isnt avaible for 1 specific need
+        #Since file directory size cannot be found with easy os.path.getsize
         except:
-            print("File size after decompression from 7zip is not available right now")
+            total=0
+
+            #Running loop to find size of each file in the directory
+            for route,dirs,files in os.walk(func.result_path):
+                for f in files:
+                    total+=os.path.getsize(os.path.join(route,f))
+            
+            print(f'\nAfter Compression/Decompression size: {total} bytes')
